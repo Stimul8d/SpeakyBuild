@@ -1,19 +1,22 @@
 var voice = require("say");
 var request = require("request");
+var config = require("./config");
 
-var pathToJenkins ="http://192.168.99.100:32769/job/build1/lastBuild/api/json";
+var sendRequest = function() {
+	request(config.pathToJenkins, function(error, res, body) {
+			if (!error && res.statusCode == 200) {
+				var result = JSON.parse(body);
 
-request(pathToJenkins, function(error,res,body){
-   if(!error && res.statusCode == 200){
-       var result = JSON.parse(body);
-       
-       var text = result.fullDisplayName + " is "
-        + ((result.building) ? "" : "not ")
-        + "building";
-        
-       console.log(text);
-        
-       voice.speak(text);
-   } 
-});
+				var text = result.fullDisplayName + " is " + ((result.building) ? "" : "not ") + "building";
 
+				console.log(text);
+
+				voice.speak(text);
+			}
+		})
+	};
+
+setInterval(function() {
+	console.log('Sending Request');
+	sendRequest();
+}, 5000);
