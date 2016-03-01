@@ -1,43 +1,56 @@
 var voice = require('say');
 var request = require('request');
-var fs = require('fs')
+var async = require('async')
+var fs = require('fs');
 var config = require('./config');
 
+var speakOnce = function(text) {
+
+	if (speakOnce.lastSpeech && speakOnce.lastSpeech === text) return;
+	speakOnce.lastSpeech = text;
+
+	console.log(text);
+	voice.speak(text, 'Daniel', 0.85);
+
+}
+
 var sendRequest = function() {
+
 	request(config.pathToJenkins, function(error, res, body) {
 		if (!error && res.statusCode == 200) {
 			var thisResult = JSON.parse(body);
 
-			fs.readFile(config.latestBuildFile, function(err, data) {
-				
-				var lastResult = JSON.parse(data);
-				
-				fs.writeFile(config.latestBuildFile, body, function(err) {
-					if (err) {
-						console.log(err);
-						return;
-					}
-				});
+			var buildInProgress = thisResult.duration == 0;
 
-				if (err) {
-					console.log(err);
-					return;
-				}
+			if (buildInProgress) {
+				speakOnce(thisResult.fullDisplayName + ' is in progress.');
+				return;
+			}
 
-				if (thisResult.number <= lastResult.number) {
-					console.log('No new builds');
-					return;
-				}
+			var data = fs.readFileSync(config.latestBuildFile);
+			var noLastBuildFile = data.length === 0
 
-				var text = thisResult.fullDisplayName + ' is ' + ((thisResult.building) ? '' : 'not ') + 'building';
+			fs.writeFileSync(config.latestBuildFile, body);
 
-				console.log(text);
+			if (noLastBuildFile) {
+				var data = fs.readFileSync(config.latestBuildFile);;
+			}
 
-				voice.speak(text);
-			});
-		}
+			var lastResult = JSON.parse(data);
+
+			var noNewBuilds = thisResult.number <= lastResult.number;
+
+			if (noNewBuilds) {
+				console.log('No new builds');
+				return;
+			}
+
+			var text = thisResult.fullDisplayName + ' is ' + ((thisResult.building) ? '' : 'not ') + 'building';
+
+			speakOnce(text);
+		};
 	})
-};
+}
 
 setInterval(function() {
 	console.log('Sending Request');
