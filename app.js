@@ -11,13 +11,14 @@ var speakOnce = function (text) {
     speakOnce.lastSpeech = text;
 
     console.log(text);
+    if(config.debug && config.silent){
+        return;
+    }
     voice.speak(text, 'Ralph', 1);
 
 }
 
 var sendRequest = function () {
-    
-    unicorn.run()
     
     if (config.debug) {
         request = function (url, callback) {
