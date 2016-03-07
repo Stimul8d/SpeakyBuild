@@ -11,10 +11,10 @@ module.exports = {
         child.stdout.on('end', function () { callBack(resp) });
     },
     error: function(){
-        this.run('sudo python', ['~/Pimoroni/unicornhat/rainbow.py'], function (r) { });
+        this.run('sudo python', ['rainbow.py'], function (r) { });
     },
     pass: function () {
-        shell.run('~/Pimoroni/unicornhat/rainbow.py', function(err){
+        shell.run('rainbow.py', function(err){
             if(err){
                 console.log(err);
             }
