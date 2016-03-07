@@ -31,6 +31,7 @@ var sendRequest = function () {
 
     request(config.pathToJenkins, function (error, res, body) {
         if (!error && res.statusCode == 200) {
+            console.log('request success');
             var thisResult = JSON.parse(body);
 
             var buildInProgress = thisResult.duration == 0;
