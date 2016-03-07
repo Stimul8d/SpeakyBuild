@@ -11,7 +11,7 @@ var speakOnce = function (text) {
     speakOnce.lastSpeech = text;
 
     console.log(text);
-    if(config.debug && config.silent){
+    if(config.silent){
         return;
     }
     voice.speak(text, 'Ralph', 1);
