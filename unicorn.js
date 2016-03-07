@@ -13,7 +13,7 @@ module.exports = {
         this.run('sudo python', ['~/Pimoroni/unicornhat/rainbow.py'], function (r) { });
     },
     pass: function () {
-        if (config.debug) {
+        if (config.lightsOff) {
             this.run('echo', ['happy unicorn'],
                 function (r) {
                     console.log(r);
