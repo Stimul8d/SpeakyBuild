@@ -1,4 +1,5 @@
 var config = require('./config');
+var shell = require('python-shell');
 
 module.exports = {
     run: function (cmd, args, callBack) {
@@ -13,14 +14,19 @@ module.exports = {
         this.run('sudo python', ['~/Pimoroni/unicornhat/rainbow.py'], function (r) { });
     },
     pass: function () {
-        if (config.lightsOff) {
-            this.run('echo', ['happy unicorn'],
-                function (r) {
-                    console.log(r);
-                })
-            return;
-        }
-        this.run('sudo python', ['~/Pimoroni/unicornhat/rainbow.py'], function (r) { });
+        shell.run('~/Pimoroni/unicornhat/rainbow.py', function(err){
+            if(err){
+                console.log(err);
+            }
+        })
+        // if (config.lightsOff) {
+        //     this.run('echo', ['happy unicorn'],
+        //         function (r) {
+        //             console.log(r);
+        //         })
+        //     return;
+        // }
+        // this.run('sudo python', ['~/Pimoroni/unicornhat/rainbow.py'], function (r) { });
     }
 }
 
