@@ -3,6 +3,7 @@ var request = require('request');
 var async = require('async')
 var fs = require('fs');
 var config = require('./config');
+var unicorn = require('./unicorn');
 
 var speakOnce = function (text) {
 
@@ -15,7 +16,9 @@ var speakOnce = function (text) {
 }
 
 var sendRequest = function () {
-
+    
+    unicorn.run()
+    
     if (config.debug) {
         request = function (url, callback) {
             if (fs.existsSync(config.latestBuildFile)) {
@@ -59,7 +62,9 @@ var sendRequest = function () {
                 console.log('No new builds');
                 return;
             }
-
+            
+            unicorn.pass();
+            
             var text = thisResult.fullDisplayName + ' is ' + ((thisResult.building) ? '' : 'not ') + 'building';
 
             speakOnce(text);
