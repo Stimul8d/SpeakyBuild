@@ -71,6 +71,7 @@ var sendRequest = function () {
             speakOnce(text);
         }
         else { //request error
+            console.log('request error')
             unicorn.error();
         };
     })
