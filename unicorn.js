@@ -9,6 +9,9 @@ module.exports = {
         child.stdout.on('data', function (buffer) { resp += buffer.toString() });
         child.stdout.on('end', function () { callBack(resp) });
     },
+    error: function(){
+        this.run('sudo python', ['~/Pimoroni/unicornhat/rainbow.py'], function (r) { });
+    },
     pass: function () {
         if (config.debug) {
             this.run('echo', ['happy unicorn'],
@@ -17,7 +20,7 @@ module.exports = {
                 })
             return;
         }
-        this.run('sudo python', ['~/Pimoroni/unicornhat/rainbow.py'], function (r) { })
+        this.run('sudo python', ['~/Pimoroni/unicornhat/rainbow.py'], function (r) { });
     }
 }
 

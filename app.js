@@ -11,7 +11,7 @@ var speakOnce = function (text) {
     speakOnce.lastSpeech = text;
 
     console.log(text);
-    if(config.silent){
+    if (config.silent) {
         return;
     }
     voice.speak(text, 'Ralph', 1);
@@ -19,7 +19,7 @@ var speakOnce = function (text) {
 }
 
 var sendRequest = function () {
-    
+
     if (config.debug) {
         request = function (url, callback) {
             if (fs.existsSync(config.latestBuildFile)) {
@@ -63,12 +63,15 @@ var sendRequest = function () {
                 console.log('No new builds');
                 return;
             }
-            
+
             unicorn.pass();
-            
+
             var text = thisResult.fullDisplayName + ' is ' + ((thisResult.building) ? '' : 'not ') + 'building';
 
             speakOnce(text);
+        }
+        else { //request error
+            unicorn.error();
         };
     })
 }
