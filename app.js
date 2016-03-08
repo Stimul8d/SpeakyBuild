@@ -15,7 +15,21 @@ var speakOnce = function (text) {
         return;
     }
     voice.speak(text, 'Ralph', 1);
+}
 
+var startInProgressBuild = function (text) {
+    speakOnce(text);
+    unicorn.inProgress();
+}
+
+var startBuildError = function (text) {
+    speakOnce(text);
+    unicorn.error();
+}
+
+var startGoodBuild = function (text) {
+    speakOnce(text);
+    unicorn.pass();
 }
 
 var sendRequest = function () {
@@ -30,53 +44,56 @@ var sendRequest = function () {
     }
 
     request(config.pathToJenkins, function (error, res, body) {
-        if (!error && res.statusCode == 200) {
-            console.log('request success');
-            var thisResult = JSON.parse(body);
 
-            var buildInProgress = thisResult.duration == 0;
-
-            if (buildInProgress) {
-                speakOnce(thisResult.fullDisplayName + ' is in progress.');
-                return;
-            }
-
-            var data = { length: 0 };
-
-            if (fs.existsSync(config.latestBuildFile)) {
-                data = fs.readFileSync(config.latestBuildFile);
-            }
-            var noLastBuildFile = data.length === 0
-
-            console.log('writing latest build');
-
-            fs.writeFileSync(config.latestBuildFile, body);
-
-            if (noLastBuildFile) {
-                data = fs.readFileSync(config.latestBuildFile);;
-            }
-
-            var lastResult = JSON.parse(data);
-
-            var noNewBuilds = thisResult.number <= lastResult.number;
-            if (config.debug) { noNewBuilds = false; }
-            if (noNewBuilds) {
-                console.log('No new builds');
-                return;
-            }
-
-            unicorn.pass();
-
-            var text = thisResult.fullDisplayName + ' is ' + ((thisResult.building) ? '' : 'not ') + 'building';
-
-            speakOnce(text);
+        if (error && res.statusCode != 200) {
+            startBuildError('request error');
+            return;
         }
-        else { //request error
-            console.log('request error')
-            unicorn.error();
-        };
-    })
-}
+
+        var thisResult = JSON.parse(body);
+
+        var buildInProgress = thisResult.duration == 0;
+
+        if (buildInProgress) {
+            startInProgressBuild(thisResult.fullDisplayName 
+                + ' is in progress.');
+            return;
+        }
+
+        var data = { length: 0 };
+
+        if (fs.existsSync(config.latestBuildFile)) {
+            data = fs.readFileSync(config.latestBuildFile);
+        }
+        var noLastBuildFile = data.length === 0
+
+        fs.writeFileSync(config.latestBuildFile, body);
+
+        if (noLastBuildFile) {
+            data = fs.readFileSync(config.latestBuildFile);;
+        }
+
+        var lastResult = JSON.parse(data);
+
+        var noNewBuilds = thisResult.number <= lastResult.number;
+        if (config.debug) { noNewBuilds = false; }
+        if (noNewBuilds) {
+            console.log('No new builds');
+            return;
+        }
+
+        var text = thisResult.fullDisplayName + ' is '
+            + ((thisResult.building) ? '' : 'not ') + 'building';
+
+        if (thisResult.building) {
+            startGoodBuild(text);
+            return;
+        }
+
+        startBuildError(text);
+        
+    })};
+
 
 setInterval(function () {
     console.log('Sending Request');
