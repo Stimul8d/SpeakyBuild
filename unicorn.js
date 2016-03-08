@@ -15,13 +15,13 @@ var run = function (fileName) {
 
 module.exports = {
     error: function () {
-        run('/scenes/random_blinky.py');
+        run('./scenes/random_blinky.py');
     },
     inProgress: function(){
-        run('demo.py');
+        run('./scenes/demo.py');
     },
     pass: function () {
-        run('/scenes/matrix.py');
+        run('./scenes/matrix.py');
     }
 }
 
