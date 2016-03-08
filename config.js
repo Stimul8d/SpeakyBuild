@@ -3,7 +3,7 @@ module.exports = {
     latestBuildFile: './latestBuild.js',
     debug: true,
     silent: true,
-    voldermort: true,
+    voldermort: false,
     debugInfo: {
         fail: '{"actions":[{"causes":[{"shortDescription":"Started by user anonymous","userId":null,"userName":"anonymous"}]}],"artifacts":[],"building":false,"description":null,"displayName":"#18","duration":20061,"estimatedDuration":20030,"executor":null,"fullDisplayName":"build1 #18","id":"18","keepLog":false,"number":18,"queueId":1,"result":"FAILURE","timestamp":1457383706653,"url":"http://192.168.99.100:32769/job/build1/18/","builtOn":"","changeSet":{"items":[],"kind":null},"culprits":[]}',
         pass: '{"actions":[{"causes":[{"shortDescription":"Started by user anonymous","userId":null,"userName":"anonymous"}]}],"artifacts":[],"building":true,"description":null,"displayName":"#18","duration":20061,"estimatedDuration":20030,"executor":null,"fullDisplayName":"build1 #18","id":"18","keepLog":false,"number":18,"queueId":1,"result":"FAILURE","timestamp":1457383706653,"url":"http://192.168.99.100:32769/job/build1/18/","builtOn":"","changeSet":{"items":[],"kind":null},"culprits":[]}',
