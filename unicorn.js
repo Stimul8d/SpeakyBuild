@@ -18,7 +18,7 @@ module.exports = {
         run('./scenes/random_blinky.py');
     },
     inProgress: function(){
-        run('./scenes/demo.py');
+        run('./scenes/cross.py');
     },
     pass: function () {
         run('./scenes/matrix.py');
