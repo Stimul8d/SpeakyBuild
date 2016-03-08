@@ -1,27 +1,28 @@
 var config = require('./config');
 var shell = require('python-shell');
+var chalk = require('chalk');
 
-var run = function (fileName) {
+var run = function (fileName ,chalk) {
     if(config.voldermort){
-        console.log('not running ' + fileName);
+        console.log(chalk('not running ' + fileName));
         return;
     }
     shell.run(fileName, function (err) {
         if (err) {
-            console.log(err);
+            console.log(chalk.red(err));
         }
     })
 }
 
 module.exports = {
     error: function () {
-        run('./scenes/random_blinky.py');
+        run('./scenes/random_blinky.py', chalk.red);
     },
     inProgress: function(){
-        run('./scenes/cross.py');
+        run('./scenes/cross.py', chalk.yellow);
     },
     pass: function () {
-        run('./scenes/matrix.py');
+        run('./scenes/matrix.py', chalk.green);
     }
 }
 

@@ -1,3 +1,3 @@
-var unicorn = require('./unicorn');
+var chalk = require('chalk');
 
-unicorn.error();
+console.log(chalk.red('hi there'));

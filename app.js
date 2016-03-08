@@ -4,13 +4,16 @@ var async = require('async')
 var fs = require('fs');
 var config = require('./config');
 var unicorn = require('./unicorn');
+var chalk = require('chalk');
 
-var speakOnce = function (text) {
+var speakOnce = function (text, chalk) {
 
-    if (speakOnce.lastSpeech && speakOnce.lastSpeech === text) return;
+    if (speakOnce.lastSpeech 
+        && speakOnce.lastSpeech === text) return;
+    
     speakOnce.lastSpeech = text;
 
-    console.log(text);
+    console.log(chalk(text));
     if (config.silent) {
         return;
     }
@@ -18,34 +21,31 @@ var speakOnce = function (text) {
 }
 
 var startInProgressBuild = function (text) {
-    speakOnce(text);
+    speakOnce(text, chalk.yellow);
     unicorn.inProgress();
 }
 
 var startBuildError = function (text) {
-    speakOnce(text);
+    speakOnce(text, chalk.red);
     unicorn.error();
 }
 
 var startGoodBuild = function (text) {
-    speakOnce(text);
+    speakOnce(text, chalk.green);
     unicorn.pass();
 }
 
 var sendRequest = function () {
+    
+    var jenkins = config.debug 
+        ? config.debugPathToJenkins     
+        : config.pathToJenkins;
+    
+    console.log(chalk.blue('requesting ' + jenkins));
+    
+    request(jenkins, function (error, res, body) {
 
-    if (config.debug) {
-        request = function (url, callback) {
-            if (fs.existsSync(config.latestBuildFile)) {
-                fs.unlinkSync(config.latestBuildFile);
-            }
-            callback(null, { statusCode: 200 }, config.debugInfo.response());
-        }
-    }
-
-    request(config.pathToJenkins, function (error, res, body) {
-
-        if (error && res.statusCode != 200) {
+        if (error || res.statusCode != 200) {
             startBuildError('request error');
             return;
         }
@@ -89,13 +89,12 @@ var sendRequest = function () {
             startGoodBuild(text);
             return;
         }
-
+       
         startBuildError(text);
         
     })};
 
 
 setInterval(function () {
-    console.log('Sending Request');
     sendRequest();
 }, 5000);
