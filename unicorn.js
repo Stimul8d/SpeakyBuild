@@ -6,7 +6,7 @@ var run = function (fileName) {
         console.log('not running ' + fileName);
         return;
     }
-    shell.run(fileName, function (err) {
+    shell.run('demo.py', function (err) {
         if (err) {
             console.log(err);
         }
