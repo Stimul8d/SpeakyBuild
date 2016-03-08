@@ -5,35 +5,8 @@ var fs = require('fs');
 var config = require('./config');
 var unicorn = require('./unicorn');
 var chalk = require('chalk');
-
-var speakOnce = function (text, chalk) {
-
-    if (speakOnce.lastSpeech 
-        && speakOnce.lastSpeech === text) return;
-    
-    speakOnce.lastSpeech = text;
-
-    console.log(chalk(text));
-    if (config.silent) {
-        return;
-    }
-    voice.speak(text, 'Ralph', 1);
-}
-
-var startInProgressBuild = function (text) {
-    speakOnce(text, chalk.yellow);
-    unicorn.inProgress();
-}
-
-var startBuildError = function (text) {
-    speakOnce(text, chalk.red);
-    unicorn.error();
-}
-
-var startGoodBuild = function (text) {
-    speakOnce(text, chalk.green);
-    unicorn.pass();
-}
+var announce = require('./announce')
+var snapshots = require('./buildSnapshots');
 
 var sendRequest = function () {
     
@@ -44,53 +17,44 @@ var sendRequest = function () {
     console.log(chalk.blue('requesting ' + jenkins));
     
     request(jenkins, function (error, res, body) {
-
+        
+        //if there's an error, drop out.
         if (error || res.statusCode != 200) {
-            startBuildError('request error');
+            announce.BuildFailure('request error');
             return;
         }
-
+        
+        //or else get the data from selenium
         var thisResult = JSON.parse(body);
-
-        var buildInProgress = thisResult.duration == 0;
-
-        if (buildInProgress) {
-            startInProgressBuild(thisResult.fullDisplayName 
-                + ' is in progress.');
-            return;
-        }
-
-        var data = { length: 0 };
-
-        if (fs.existsSync(config.latestBuildFile)) {
-            data = fs.readFileSync(config.latestBuildFile);
-        }
-        var noLastBuildFile = data.length === 0
-
-        fs.writeFileSync(config.latestBuildFile, body);
-
-        if (noLastBuildFile) {
-            data = fs.readFileSync(config.latestBuildFile);;
-        }
-
-        var lastResult = JSON.parse(data);
-
+        
+        //and the last one
+        var lastResult = snapshots.getSnapshot(body);
+        
+        //if there are no new builds get out
         var noNewBuilds = thisResult.number <= lastResult.number;
         if (config.debug) { noNewBuilds = false; }
         if (noNewBuilds) {
             console.log('No new builds');
             return;
         }
+        
+        //if theres a build in progress announce it and get out
+        var buildInProgress = thisResult.duration == 0;
+        if (buildInProgress) {
+            announce.InProgress(thisResult.fullDisplayName 
+                + ' is in progress.');
+            return;
+        }   
 
         var text = thisResult.fullDisplayName + ' is '
             + ((thisResult.building) ? '' : 'not ') + 'building';
 
         if (thisResult.building) {
-            startGoodBuild(text);
+            announce.GoodBuild(text);
             return;
         }
        
-        startBuildError(text);
+        announce.BuildFailure(text);
         
     })};
 
