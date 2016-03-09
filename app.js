@@ -18,7 +18,7 @@ var sendRequest = function () {
     
     request(jenkins, function (error, res, body) {
         
-        //if there's an error, drop out.
+        //if there's an error, get out.
         if (error || res.statusCode != 200) {
             announce.BuildFailure('request error');
             return;
@@ -30,7 +30,7 @@ var sendRequest = function () {
         //and the last one
         var lastResult = snapshots.getSnapshot(body);
         
-        //if there are no new builds get out
+        //if there are no new builds, get out
         var noNewBuilds = thisResult.number <= lastResult.number;
         if (config.debug) { noNewBuilds = false; }
         if (noNewBuilds) {

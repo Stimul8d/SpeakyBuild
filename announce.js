@@ -3,13 +3,7 @@ var voice = require('say');
 var config = require('./config');
 var unicorn = require('./unicorn');
 
-var speakOnce = function (text, chalk) {
-
-    if (speakOnce.lastSpeech
-        && speakOnce.lastSpeech === text) return;
-
-    speakOnce.lastSpeech = text;
-
+var speak = function (text, chalk) {
     console.log(chalk(text));
     if (config.silent) {
         return;
@@ -19,15 +13,15 @@ var speakOnce = function (text, chalk) {
 
 module.exports = {
     InProgress: function (text) {
-        speakOnce(text, chalk.yellow);
+        speak(text, chalk.yellow);
         unicorn.inProgress();
     },
     BuildFailure: function (text) {
-        speakOnce(text, chalk.red);
+        speak(text, chalk.red);
         unicorn.error();
     },
     GoodBuild: function (text) {
-        speakOnce(text, chalk.green);
+        speak(text, chalk.green);
         unicorn.pass();
     }
 }
