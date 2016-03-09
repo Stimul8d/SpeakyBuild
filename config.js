@@ -3,6 +3,6 @@ module.exports = {
     latestBuildSnapshot: './latestBuild.js',
     debug: true,
     debugPathToJenkins: 'http://localhost:3000/buildResult',
-    silent: true,
-    voldermort: true
+    silent: false,
+    voldermort: false
 }
