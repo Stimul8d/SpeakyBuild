@@ -4,8 +4,8 @@ from random import randint
 
 for y in range(8):
   for x in range(8):
-    UH.set_pixel(x,y,0,0,0)
-    UH.show()
+    uh.set_pixel(x,y,0,0,0)
+    uh.show()
 
 width = 8
 height = 8
