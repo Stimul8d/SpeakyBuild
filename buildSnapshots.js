@@ -1,5 +1,6 @@
 var fs = require('fs');
 var config = require('./config');
+var snapshot;
 
 module.exports = {
     getSnapshot: function (body) {

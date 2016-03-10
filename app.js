@@ -8,6 +8,8 @@ var chalk = require('chalk');
 var announce = require('./announce')
 var snapshots = require('./buildSnapshots');
 
+require('shelljs/global');
+
 var sendRequest = function () {
     
     var jenkins = config.debug 
@@ -15,7 +17,7 @@ var sendRequest = function () {
         : config.pathToJenkins;
     
     console.log(chalk.blue('requesting ' + jenkins));
-    
+
     request(jenkins, function (error, res, body) {
         
         //if there's an error, get out.
