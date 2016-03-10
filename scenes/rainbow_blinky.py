@@ -3,8 +3,11 @@
 import unicornhat as unicorn
 import time, colorsys
 import numpy as np
+import os.system
 
-unicorn.brightness(0.5)
+os.system("stop.py")
+
+unicorn.brightness(1)
 
 def make_gaussian(fwhm):
 	x = np.arange(0, 8, 1, float)

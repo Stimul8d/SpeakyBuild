@@ -1,6 +1,9 @@
 import unicornhat as uh
 import time
 from random import randint
+import os.system
+
+os.system("stop.py")
 
 width = 8
 height = 8

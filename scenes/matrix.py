@@ -3,8 +3,11 @@
 import unicornhat as unicorn
 from random import randint
 import time
+import os.system
 
-unicorn.brightness(0.20)
+os.system("stop.py")
+
+unicorn.brightness(1)
 unicorn.rotation(90)
 
 wrd_rgb = [[154, 173, 154], [0, 255, 0], [0, 200, 0], [0, 162, 0], [0, 145, 0], [0, 96, 0], [0, 74, 0], [0, 0, 0,]]
