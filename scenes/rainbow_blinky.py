@@ -3,9 +3,11 @@
 import unicornhat as unicorn
 import time, colorsys
 import numpy as np
-import os.system
 
-os.system("stop.py")
+for y in range(8):
+  for x in range(8):
+    UH.set_pixel(x,y,0,0,0)
+    UH.show()
 
 unicorn.brightness(1)
 
