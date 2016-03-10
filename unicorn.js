@@ -16,7 +16,7 @@ var run = function(fileName, chalk) {
 
 module.exports = {
     error: function() {
-        run('./scenes/random_blinky.py', chalk.red);
+        run('./scenes/rainbow_blinky.py', chalk.red);
     },
     inProgress: function() {
         run('./scenes/cross.py', chalk.yellow);
