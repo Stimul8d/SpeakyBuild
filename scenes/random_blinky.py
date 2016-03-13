@@ -4,6 +4,7 @@ import unicornhat as unicorn
 import time, colorsys
 import numpy as np
 
+unicorn.clear()
 unicorn.brightness(0.5)
 
 while True:

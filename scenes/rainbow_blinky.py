@@ -4,6 +4,8 @@ import unicornhat as unicorn
 import time, colorsys
 import numpy as np
 
+unicorngat.clear();
+
 for y in range(8):
   for x in range(8):
     unicorn.set_pixel(x,y,0,0,0)

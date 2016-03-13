@@ -3,6 +3,8 @@
 import unicornhat as unicorn
 import time, math, colorsys
 
+unicorn.clear()
+
 # twisty swirly goodness
 def swirl(x, y, step):
     x -= 4

@@ -4,6 +4,8 @@ import unicornhat as unicorn
 from random import randint
 import time
 
+unicorn.clear()
+
 for y in range(8):
   for x in range(8):
     unicorn.set_pixel(x,y,0,0,0)
