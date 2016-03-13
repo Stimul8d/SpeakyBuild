@@ -4,7 +4,7 @@ import unicornhat as unicorn
 import time, colorsys
 import numpy as np
 
-unicorngat.clear();
+unicornhat.clear();
 
 for y in range(8):
   for x in range(8):
