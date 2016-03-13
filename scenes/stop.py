@@ -7,7 +7,6 @@ uh.clear()
 uh.rotation(0)
 uh.brightness(0.1)
 heights = []
-uh.reset()
 
 def setup():
 
