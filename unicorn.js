@@ -8,11 +8,12 @@ var run = function(fileName, chalk) {
         console.log(chalk('not running ' + fileName));
         return;
     }
-    shell.run(fileName, function(err) {
-        if (err) {
-            console.log(chalk.red(err));
-        }
-    })
+    exec(fileName + ' &');
+//    shell.run(fileName, function(err) {
+//        if (err) {
+//            console.log(chalk.red(err));
+//        }
+//    })
 }
 
 module.exports = {

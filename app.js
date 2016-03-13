@@ -20,7 +20,7 @@ var sendRequest = function () {
 
     request(jenkins, function (error, res, body) {
         
-        exec('pkill -f ./scenes/cross.py');
+        //exec('pkill -f ./scenes/cross.py');
         //exec('pkill -f ./scenes/rainbow_blinky.py');
         //exec('pkill -f ./scenes/matrix.py');
         
