@@ -48,7 +48,7 @@ var sendRequest = function () {
             return;
         }   
         
-        var text = 'One shall stand. One shall Fall...' 
+        var text = 'One shall stand. One shall Fall. ' 
             + thisResult.fullDisplayName + ' is '
             + ((thisResult.building) ? '' : 'not ') + 'building';
 
