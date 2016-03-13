@@ -3,6 +3,8 @@
 import unicornhat as UH
 import time
 
+uh.clear()
+
 for y in range(8):
   for x in range(8):
     UH.set_pixel(x,y,255,0,255)
