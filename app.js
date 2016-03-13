@@ -48,8 +48,6 @@ var sendRequest = function () {
             return;
         }   
         
-        announce.JustSpeak('');
-        
         var text = 'One must stand. One Must Fall.' 
             + thisResult.fullDisplayName + ' is '
             + ((thisResult.building) ? '' : 'not ') + 'building';
