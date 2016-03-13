@@ -17,7 +17,7 @@ var run = function(fileName, chalk) {
 
 module.exports = {
     error: function() {
-        exec('python ./scenes/random_blinky.py');
+        exec('python ./scenes/random_blinky.py &');
         //run('./scenes/rainbow_blinky.py', chalk.red);
     },
     inProgress: function() {
