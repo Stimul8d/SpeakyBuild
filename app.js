@@ -21,8 +21,8 @@ var sendRequest = function () {
     request(jenkins, function (error, res, body) {
         
         exec('pkill -f ./scenes/cross.py');
-        //exec('pkill -f ./scenes/rainbow_blinky.py');
-        //exec('pkill -f ./scenes/matrix.py');
+        exec('pkill -f ./scenes/rainbow_blinky.py');
+        exec('pkill -f ./scenes/matrix.py');
         
         //if there's an error, get out.
         if (error || res.statusCode != 200) {
