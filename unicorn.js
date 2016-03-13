@@ -8,6 +8,7 @@ var run = function(fileName, chalk) {
         console.log(chalk('not running ' + fileName));
         return;
     }
+    exec('python ./stop.py &');
     exec(fileName + ' &');
 //    shell.run(fileName, function(err) {
 //        if (err) {
