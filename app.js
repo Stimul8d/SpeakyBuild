@@ -47,7 +47,9 @@ var sendRequest = function () {
                 + ' is in progress.');
             return;
         }   
-
+        
+        announce.JustSpeak('One must stand. One Must Fall');
+        
         var text = thisResult.fullDisplayName + ' is '
             + ((thisResult.building) ? '' : 'not ') + 'building';
 
