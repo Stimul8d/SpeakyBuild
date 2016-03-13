@@ -1,6 +1,7 @@
 var config = require('./config');
 var shell = require('python-shell');
 var chalk = require('chalk');
+require('shelljs/global');
 
 var run = function(fileName, chalk) {
     if (config.voldermort) {
@@ -16,7 +17,8 @@ var run = function(fileName, chalk) {
 
 module.exports = {
     error: function() {
-        run('./scenes/rainbow_blinky.py', chalk.red);
+        exec('python ./scenes/random_blinky.py');
+        //run('./scenes/rainbow_blinky.py', chalk.red);
     },
     inProgress: function() {
         run('./scenes/cross.py', chalk.yellow);
