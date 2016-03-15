@@ -3,7 +3,7 @@
 import unicornhat as UH
 import time
 
-uh.clear()
+UH.clear()
 
 for y in range(8):
   for x in range(8):
