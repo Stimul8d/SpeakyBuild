@@ -9,7 +9,7 @@ lastBuild = 'nothing'
 def loop():
     if os.path.isfile(buildFile):
         lastBuild = open(buildFile).read()
-
+        print lastBuild
         if lastBuild == 'inprog':
             inprog.go()
         if lastBuild == 'good':
