@@ -10,7 +10,7 @@ var snapshots = require('./buildSnapshots');
 
 require('shelljs/global');
 
-announce.Initialize('Optimus Lives!');
+announce.Initialize('Sometimes even the wisest of men and machines can be in error.');
 
 var sendRequest = function () {
     

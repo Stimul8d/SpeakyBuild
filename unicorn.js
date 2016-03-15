@@ -1,6 +1,7 @@
 var config = require('./config');
 var shell = require('python-shell');
 var chalk = require('chalk');
+
 require('shelljs/global');
 
 var run = function (fileName, chalk) {
@@ -11,7 +12,7 @@ var run = function (fileName, chalk) {
     shell.run('python ./stop.py &', function (err) {
         shell.run(fileName, function (err) {
             if (err) {
-                console.log(chalk.red(err));
+                console.log(chalk(err));
             }
         })
     });
