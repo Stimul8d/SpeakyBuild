@@ -23,13 +23,13 @@ module.exports = {
         run('./scenes/simple.py');
     },
     error: function () {
-        run('./scenes/rainbow_blinky.py', chalk.red);
+        run('./scenes/rainbow_blinky.py ../latestBuild.json', chalk.red);
     },
     inProgress: function () {
-        run('./scenes/cross.py', chalk.yellow);
+        run('./scenes/cross.py ../latestBuild.json', chalk.yellow);
     },
     pass: function () {
-        run('./scenes/matrix.py', chalk.green);
+        run('./scenes/matrix.py ../latestBuild.json', chalk.green);
     }
 }
 

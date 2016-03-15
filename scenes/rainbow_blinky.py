@@ -3,6 +3,9 @@
 import unicornhat as unicorn
 import time, colorsys
 import numpy as np
+from sys import argv
+
+script, filename = argv
 
 unicorn.clear();
 
@@ -20,6 +23,9 @@ def make_gaussian(fwhm):
 	fwhm = fwhm
 	gauss = np.exp(-4 * np.log(2) * ((x - x0) ** 2 + (y - y0) ** 2) / fwhm ** 2)
 	return gauss
+    
+def should_break()
+    
 
 while True:
 	for z in list(range(1, 10)[::-1]) + list(range(1, 10)):
