@@ -5,11 +5,10 @@ import stop as stop
 import time
 
 start.go()
-print('starting up the hat')
 stop.go()
 
-t_end = time.time() + 5
-while time.time() < t_end:
+def loop():
+    print(time.ctime())
     start.go()
     stop.go()
-    print(time.time())
+    threading.Timer(10, foo).start()
