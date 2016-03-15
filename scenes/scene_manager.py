@@ -10,7 +10,7 @@ def loop():
     start.go()
     stop.go()
     
-    if os.path.isFile(buildFile)    
+    if os.path.isfile(buildFile)    
         lastBuild = open(buildFile).read()
         
         if lastBuild == 'inprog'
