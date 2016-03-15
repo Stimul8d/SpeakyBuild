@@ -5,7 +5,8 @@ var snapshot;
 module.exports = {
     clear: function()
     {
-        fs.writeFileSync(config.latestBuildSnapshot, "Nothing Here");
+        //this is used to cause the python scripts to exit. DONT REMOVE THE RAND
+        fs.writeFileSync(config.latestBuildSnapshot, "Nothing Here " + Math.random());
     },
     getSnapshot: function (body) {
         //get the latestBuildSnapshot
