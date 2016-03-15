@@ -1,12 +1,13 @@
 var fs = require('fs');
 var config = require('./config');
+var Chance = require('chance');
 var snapshot;
 
 module.exports = {
     clear: function()
     {
         //this is used to cause the python scripts to exit. DONT REMOVE THE RAND
-        fs.writeFileSync(config.latestBuildSnapshot, "Nothing Here " + Math.random());
+        fs.writeFileSync(config.latestBuildSnapshot, "Nothing Here " + new Chance().guid());
     },
     getSnapshot: function (body) {
         //get the latestBuildSnapshot

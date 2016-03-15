@@ -4,6 +4,6 @@ module.exports = {
     debug: true,
     debugPathToJenkins: 'http://localhost:3000/buildResult',
     silent: false,
-    voldermort: true,
-    useFestival: false
+    voldermort: false,
+    useFestival: true
 }
