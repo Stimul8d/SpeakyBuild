@@ -27,7 +27,7 @@ def make_gaussian(fwhm):
     
 def new_build():
         newBuildFile = open(filename).read()
-        print(newbuildFile != lastBuild)
+        print(newBuildFile != lastBuild)
         return newBuildFile != lastBuild
 
 while not new_build():
