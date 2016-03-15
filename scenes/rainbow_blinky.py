@@ -25,7 +25,7 @@ def make_gaussian(fwhm):
 	gauss = np.exp(-4 * np.log(2) * ((x - x0) ** 2 + (y - y0) ** 2) / fwhm ** 2)
 	return gauss
     
-def new_build()
+def new_build():
         newBuildFile = open(filename).read()
         return newBuildFile != latestBuild
 
