@@ -4,10 +4,12 @@ import time
 from sys import argv
 
 script, filename = argv
-print(filename)
-txt = open(filename)
-print(txt.read())
-def RunScene(scene):
-    while(True) :
-        print('yep')   
-        time.sleep(1)
+lastBuild = open(filename).read()
+
+def NewBuild():
+    newBuild = open(filename).read()
+    return newBuild != lastBuild
+    
+while not(NewBuild() ) :
+    print('yep')   
+    time.sleep(1)
