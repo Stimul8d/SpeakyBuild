@@ -10,7 +10,7 @@ var snapshots = require('./buildSnapshots');
 
 require('shelljs/global');
 
-announce.initialize('Sometimes even the wisest of men and machines can be in error.');
+announce.initialize('I will accept this burden with all that I am!');
 
 var sendRequest = function () {
     
