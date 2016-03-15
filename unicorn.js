@@ -4,27 +4,31 @@ var chalk = require('chalk');
 
 require('shelljs/global');
 
+var options = {
+    args: [config.latestBuildSnapshot]
+}
+
 var run = function (fileName, chalk) {
     if (config.voldermort) {
         console.log('not running ' + fileName);
         return;
     }
-    shell.run('python ./stop.py &', function (err) {
-        shell.run(fileName, function (err) {
-            if (err) {
-                console.log(err);
-            }
-        })
-    });
+
+    shell.run(fileName, options, function (err) {
+        if (err) {
+            console.log(err);
+        }
+    })
+
 }
 
 module.exports = {
-    initialize: function(){
+    initialize: function () {
         run('./scenes/simple.py');
     },
     error: function () {
-        exec('python ./scenes/rainbow_blinky.py latestBuild.json')
-        //run('./scenes/rainbow_blinky.py ../latestBuild.json', chalk.red);
+        //exec('python ./scenes/rainbow_blinky.py')
+        run('./scenes/rainbow_blinky.py', chalk.red);
     },
     inProgress: function () {
         run('./scenes/cross.py ../latestBuild.json', chalk.yellow);
