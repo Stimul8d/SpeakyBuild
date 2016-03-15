@@ -17,7 +17,8 @@ var speak = function (text, chalk) {
 }
 
 module.exports = {
-    JustSpeak: function(text){
+    Initialize: function(text){
+        unicorn.initialize();
         speak(text, chalk.blue);  
     },
     InProgress: function (text) {
