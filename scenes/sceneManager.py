@@ -5,7 +5,7 @@ import stop as stop
 import time, threading
 import rainbow_blinky as fail
 
-def loop():ß
+def loop():
     start.go()
     stop.go()
     fail.go()
