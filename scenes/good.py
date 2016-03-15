@@ -13,7 +13,8 @@ def go():
     clock = 0
 
     blue_pilled_population = [[randint(0,7), 7]]
-    while True:
+    t_end = time.time() + 10
+    while time.time() < t_end:
             for person in blue_pilled_population:
                     y = person[1]
                     for rgb in wrd_rgb:

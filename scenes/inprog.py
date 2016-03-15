@@ -136,7 +136,8 @@ def go():
     unicorn.brightness(0.05)
 
     step = 0
-    while True:
+    t_end = time.time() + 10
+    while time.time() < t_end:
         for i in range(500):
             for y in range(8):
                 for x in range(8):              
