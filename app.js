@@ -25,10 +25,11 @@ var sendRequest = function () {
         //if there's an error, get out.
         if (error || res.statusCode != 200) {
             announce.buildFailure('request error');
+            snapshots.clear();
             return;
         }
         
-        //or else get the data from selenium
+        //or else get the data from jenkins
         var thisResult = JSON.parse(body);
         
         //and the last one

@@ -3,6 +3,10 @@ var config = require('./config');
 var snapshot;
 
 module.exports = {
+    clear: function()
+    {
+        fs.writeFileSync(config.latestBuildSnapshot, "Nothing Here");
+    },
     getSnapshot: function (body) {
         //get the latestBuildSnapshot
         var data = { length: 0 };

@@ -27,7 +27,6 @@ module.exports = {
         run('./scenes/simple.py');
     },
     error: function () {
-        //exec('python ./scenes/rainbow_blinky.py')
         run('./scenes/rainbow_blinky.py', chalk.red);
     },
     inProgress: function () {
