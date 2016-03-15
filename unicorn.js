@@ -24,7 +24,7 @@ module.exports = {
     },
     error: function () {
         exec('python ./scenes/rainbow_blinky.py ../latestBuild.json')
-        run('./scenes/rainbow_blinky.py ../latestBuild.json', chalk.red);
+        //run('./scenes/rainbow_blinky.py ../latestBuild.json', chalk.red);
     },
     inProgress: function () {
         run('./scenes/cross.py ../latestBuild.json', chalk.yellow);
