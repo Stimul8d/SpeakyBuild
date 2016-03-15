@@ -25,7 +25,6 @@ var sendRequest = function () {
         //if there's an error, get out.
         if (error || res.statusCode != 200) {
             announce.buildFailure('request error');
-            snapshots.clear();
             return;
         }
         
@@ -39,7 +38,7 @@ var sendRequest = function () {
         var noNewBuilds = thisResult.number <= lastResult.number;
         if (config.debug) { noNewBuilds = false; }
         if (noNewBuilds) {
-            console.log('No new builds');
+            announce.nothing();
             return;
         }
         

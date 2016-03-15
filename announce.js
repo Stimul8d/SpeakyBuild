@@ -23,6 +23,9 @@ module.exports = {
         speak(text, chalk.green);  
         unicorn.initialize();
     },
+    nothing: function(){
+        snapshots.writeResults('nothing');
+    },
     inProgress: function (text) {
         speak(text, chalk.yellow);
         snapshots.writeResults('inprog');
