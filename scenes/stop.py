@@ -11,4 +11,4 @@ def go():
             UH.set_pixel(x,y,0,0,0)
             UH.show()
             time.sleep(0.05)
-    time.sleep(0.1)
+    time.sleep(1)
