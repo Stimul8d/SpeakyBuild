@@ -23,6 +23,7 @@ module.exports = {
         run('./scenes/simple.py');
     },
     error: function () {
+        exec('python ./scenes/rainbow_blinky.py ../latestBuild.json')
         run('./scenes/rainbow_blinky.py ../latestBuild.json', chalk.red);
     },
     inProgress: function () {
