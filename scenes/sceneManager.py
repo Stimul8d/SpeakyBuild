@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import rainbow_blinky as pass_scene
+#import rainbow_blinky as pass
 import simple as start
 import time
 
