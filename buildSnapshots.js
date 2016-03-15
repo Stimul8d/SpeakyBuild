@@ -17,8 +17,12 @@ module.exports = {
             snapshotExists = data.length > 0;
         }
         
+        //add some randomness
+        var json = JSON.parse(body);
+        json.rand = Math.random();
+        
         //write the snapshot
-        fs.writeFileSync(config.latestBuildSnapshot, body);
+        fs.writeFileSync(config.latestBuildSnapshot, JSON.stringify(json));
         
         //if there wasn't a snapshot read the newest one
         if (!snapshotExists) {
