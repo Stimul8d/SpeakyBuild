@@ -6,13 +6,13 @@ require('shelljs/global');
 
 var run = function (fileName, chalk) {
     if (config.voldermort) {
-        console.log(chalk('not running ' + fileName));
+        console.log('not running ' + fileName);
         return;
     }
     shell.run('python ./stop.py &', function (err) {
         shell.run(fileName, function (err) {
             if (err) {
-                console.log(chalk(err));
+                console.log(err);
             }
         })
     });
@@ -23,7 +23,7 @@ module.exports = {
         run('./scenes/simple.py');
     },
     error: function () {
-        exec('python ./scenes/rainbow_blinky.py ../latestBuild.json')
+        exec('python ./scenes/rainbow_blinky.py latestBuild.json')
         //run('./scenes/rainbow_blinky.py ../latestBuild.json', chalk.red);
     },
     inProgress: function () {
