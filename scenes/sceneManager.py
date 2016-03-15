@@ -10,4 +10,6 @@ stop.go()
 
 t_end = time.time() + 5
 while time.time() < t_end:
+    start.go()
+    stop.go()
     print(time.time())
