@@ -5,5 +5,5 @@ import time
 
 start.go()
 print('starting up the hat')
-#while True:   
-#    time.sleep(1000)
+while True:   
+    time.sleep(1000)
