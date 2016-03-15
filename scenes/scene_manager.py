@@ -10,16 +10,16 @@ def loop():
     start.go()
     stop.go()
     
-    if(os.path.isFile(buildFile))    
+    if os.path.isFile(buildFile)    
         lastBuild = open(buildFile).read()
         
-        if(lastBuild == 'inprog')
+        if lastBuild == 'inprog'
             inprog.go()
-        if(lastBuild == 'good')
+        if lastBuild == 'good'
             good.go()
-        if(lastBuild == 'bad')
+        if lastBuild == 'bad'
             bad.go()
-        if(lastBuild == 'nothing')
+        if lastBuild == 'nothing'
             start.go()
             stop.go()
         
