@@ -4,10 +4,8 @@ var Chance = require('chance');
 var snapshot;
 
 module.exports = {
-    clear: function()
-    {
-        //this is used to cause the python scripts to exit. DONT REMOVE THE RAND
-        fs.writeFileSync(config.latestBuildSnapshot, "Nothing Here " + new Chance().guid());
+    writeResults: function(results){
+      fs.writeFileSync(config.latestBuildResultSnapshot, results);  
     },
     getSnapshot: function (body) {
         //get the latestBuildSnapshot
@@ -18,12 +16,8 @@ module.exports = {
             snapshotExists = data.length > 0;
         }
         
-        //add some randomness
-        var json = JSON.parse(body);
-        json.rand = Math.random();
-        
         //write the snapshot
-        fs.writeFileSync(config.latestBuildSnapshot, JSON.stringify(json));
+        fs.writeFileSync(config.latestBuildSnapshot, body);
         
         //if there wasn't a snapshot read the newest one
         if (!snapshotExists) {

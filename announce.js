@@ -2,6 +2,8 @@ var chalk = require('chalk');
 var voice = require('say');
 var config = require('./config');
 var unicorn = require('./unicorn');
+var snapshots = require('./buildSnapshots');
+
 require('shelljs/global');
 
 var speak = function (text, chalk) {
@@ -23,14 +25,17 @@ module.exports = {
     },
     inProgress: function (text) {
         speak(text, chalk.yellow);
+        snapshots.writeResults('inprog');
         unicorn.inProgress();
     },
     buildFailure: function (text) {
         speak(text, chalk.red);
+        snapshots.writeResults('fail');
         unicorn.error();
     },
     goodBuild: function (text) {
         speak(text, chalk.green);
+        snapshots.writeResults('pass');
         unicorn.pass();
     },
 }

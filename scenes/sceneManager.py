@@ -4,6 +4,6 @@ import simple as start
 import time
 
 start.go()
-
-while True:   
-    time.sleep(1000)
+print('starting up the hat')
+#while True:   
+#    time.sleep(1000)

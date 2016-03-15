@@ -12,3 +12,5 @@ def go():
             UH.show()
             time.sleep(0.05)
     time.sleep(1)
+    
+    UH.clear()
