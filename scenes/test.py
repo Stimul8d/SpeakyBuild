@@ -6,7 +6,7 @@ from sys import argv
 script, filename = argv
 print(filename)
 txt = open(filename)
-print(txt)
+print(txt.read())
 def RunScene(scene):
     while(True) :
         print('yep')   
