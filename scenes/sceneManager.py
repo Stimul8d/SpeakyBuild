@@ -5,5 +5,7 @@ import time
 
 start.go()
 print('starting up the hat')
-while True:   
-    time.sleep(1000)
+
+t_end = time.time() + 5
+while time.time() < t_end:
+    print(time.time())
