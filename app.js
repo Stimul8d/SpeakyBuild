@@ -66,4 +66,4 @@ var sendRequest = function () {
 
 setInterval(function () {
     sendRequest();
-}, 5000);
+}, 10000);
