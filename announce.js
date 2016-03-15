@@ -17,19 +17,19 @@ var speak = function (text, chalk) {
 }
 
 module.exports = {
-    Initialize: function(text){
+    initialize: function(text){
         unicorn.initialize();
-        speak(text, chalk.blue);  
+        //speak(text, chalk.blue);  
     },
-    InProgress: function (text) {
+    inProgress: function (text) {
         speak(text, chalk.yellow);
         unicorn.inProgress();
     },
-    BuildFailure: function (text) {
+    buildFailure: function (text) {
         speak(text, chalk.red);
         unicorn.error();
     },
-    GoodBuild: function (text) {
+    goodBuild: function (text) {
         speak(text, chalk.green);
         unicorn.pass();
     },

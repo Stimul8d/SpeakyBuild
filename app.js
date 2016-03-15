@@ -10,7 +10,7 @@ var snapshots = require('./buildSnapshots');
 
 require('shelljs/global');
 
-announce.Initialize('Sometimes even the wisest of men and machines can be in error.');
+announce.initialize('Sometimes even the wisest of men and machines can be in error.');
 
 var sendRequest = function () {
     
@@ -24,7 +24,7 @@ var sendRequest = function () {
         
         //if there's an error, get out.
         if (error || res.statusCode != 200) {
-            announce.BuildFailure('request error');
+            announce.buildFailure('request error');
             return;
         }
         
@@ -45,7 +45,7 @@ var sendRequest = function () {
         //if theres a build in progress announce it and get out
         var buildInProgress = thisResult.duration == 0;
         if (buildInProgress) {
-            announce.InProgress(thisResult.fullDisplayName 
+            announce.inProgress(thisResult.fullDisplayName 
                 + ' is in progress.');
             return;
         }   
@@ -55,11 +55,11 @@ var sendRequest = function () {
             + ((thisResult.building) ? '' : 'not ') + 'building';
 
         if (thisResult.building) {
-            announce.GoodBuild(text);
+            announce.goodBuild(text);
             return;
         }
        
-        announce.BuildFailure(text);
+        announce.buildFailure(text);
         
     })};
 
