@@ -2,13 +2,11 @@
 #import rainbow_blinky as pass
 import simple as start
 import stop as stop 
-import time
+import time, threading
+import rainbow_blinky as fail
 
-start.go()
-stop.go()
-
-def loop():
-    print(time.ctime())
+def loop():ß
     start.go()
     stop.go()
-    threading.Timer(10, foo).start()
+    fail.go()
+    threading.Timer(5, loop).start()
