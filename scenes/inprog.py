@@ -3,8 +3,6 @@
 import unicornhat as unicorn
 import time, math, colorsys
 
-unicorn.clear()
-
 # twisty swirly goodness
 def swirl(x, y, step):
     x -= 4
@@ -132,33 +130,34 @@ def tunnel(x, y, step):
 
     return (col[0] * 255, col[1] * 255, col[2] * 255)
 
-effects = [tunnel, rainbow_search, checker, swirl]
+def go():
+    effects = [tunnel, rainbow_search, checker, swirl]
 
-unicorn.brightness(0.05)
+    unicorn.brightness(0.05)
 
-step = 0
-while True:
-    for i in range(500):
-        for y in range(8):
-            for x in range(8):              
-                r, g, b = effects[0](x, y, step)
-                if i > 400:
-                    r2, g2, b2 = effects[-1](x, y, step)
+    step = 0
+    while True:
+        for i in range(500):
+            for y in range(8):
+                for x in range(8):              
+                    r, g, b = effects[0](x, y, step)
+                    if i > 400:
+                        r2, g2, b2 = effects[-1](x, y, step)
 
-                    ratio = (500.00 - i) / 100.0
-                    r = r * ratio + r2 * (1.0 - ratio)
-                    g = g * ratio + g2 * (1.0 - ratio)
-                    b = b * ratio + b2 * (1.0 - ratio)
-                r = int(max(0, min(255, r)))
-                g = int(max(0, min(255, g)))
-                b = int(max(0, min(255, b)))
-                unicorn.set_pixel(x, y, r, g, b)
+                        ratio = (500.00 - i) / 100.0
+                        r = r * ratio + r2 * (1.0 - ratio)
+                        g = g * ratio + g2 * (1.0 - ratio)
+                        b = b * ratio + b2 * (1.0 - ratio)
+                    r = int(max(0, min(255, r)))
+                    g = int(max(0, min(255, g)))
+                    b = int(max(0, min(255, b)))
+                    unicorn.set_pixel(x, y, r, g, b)
 
-        step += 1
-        
-        unicorn.show()
+            step += 1
+            
+            unicorn.show()
 
-        time.sleep(0.01)
+            time.sleep(0.01)
 
-    effect = effects.pop()
-    effects.insert(0, effect)
+        effect = effects.pop()
+        effects.insert(0, effect)

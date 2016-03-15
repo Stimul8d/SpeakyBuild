@@ -1,13 +1,13 @@
 #!/usr/bin/env python
-import simple as start
-import stop as stop 
+import start, stop, inprog, bad, good 
 import time, threading
-import rainbow_blinky as fail
 
 def loop():
     start.go()
     stop.go()
-    fail.go()
-    threading.Timer(5, loop).start()
+    inprog.go()
+    good.go()
+    bad.go()
+    threading.Timer(1, loop).start()
     
 loop()
