@@ -6,7 +6,7 @@ import numpy as np
 from sys import argv
 
 script, filename = argv
-lastBuild = open(filename).read()
+lastBuildFile = open(filename).read()
 
 unicorn.clear();
 
@@ -27,10 +27,12 @@ def make_gaussian(fwhm):
     
 def new_build():
         newBuildFile = open(filename).read()
-        print(newBuildFile != lastBuild)
-        return newBuildFile != lastBuild
+        isNewBuild = newBuildFile != lastBuildFile
+        lastBuildFile = newBuildFile
+        return isNewBuild
 
-while not new_build():
+t_end = time.time() + 10
+while time.time() < t_end:
 	for z in list(range(1, 10)[::-1]) + list(range(1, 10)):
 		fwhm = 5.0/z
 		gauss = make_gaussian(fwhm)
