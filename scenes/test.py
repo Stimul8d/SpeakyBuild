@@ -1,28 +1,29 @@
 #!/usr/bin/env python
-import init, start, stop, inprog, bad, good
 import time, threading
 import os
 
-buildFile = 'latestBuild.txt'
+buildFile = './scenes/latestBuild.txt'
 lastBuild = 'nothing'
-#start.go()
-#stop.go()
 
-def loop():
-    print('loop')
-    if os.path.isfile(buildFile):
+def out(file):
+    print(file)
+    f = open(file,'w')
+    f.write(time.ctime())
+    f.close()
+
+out('lastPyRun.txt')
+
+while True:
+    if os.path.exists(buildFile):
         lastBuild = str(open(buildFile).read()).strip()
-
+        print('buildFile contents: ' + lastBuild)
+        print(len(lastBuild))
         if lastBuild == 'inprog':
-            inprog.go()
+            out('lastInProg.txt')
         if lastBuild == 'good':
-            good.go()
+            out('lastGood.txt')
         if lastBuild == 'bad':
-            bad.go()
+            out('lastBad.txt')
         if lastBuild == 'nothing':
-            start.go()
-            stop.go()
-            
-    threading.Timer(1, loop).start()
-
-loop()
+            out('lastNoNewBuilds.txt')
+        time.sleep(1)
