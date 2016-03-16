@@ -8,7 +8,7 @@ lastBuild = 'nothing'
 start.go()
 stop.go()
 
-while True:
+def loop():
     if os.path.isfile(buildFile):
         lastBuild = str(open(buildFile).read()).strip()
 
@@ -21,5 +21,7 @@ while True:
         if lastBuild == 'nothing':
             start.go()
             stop.go()
+            
+    threading.Timer(1, loop).start()
 
-    time.sleep(1)
+loop()
