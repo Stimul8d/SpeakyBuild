@@ -12,11 +12,6 @@ var run = function (fileName, chalk) {
 
     var shell = new PythonShell(fileName)
 
-    shell.run(fileName, function (err) {
-        if (err) {
-            console.log(err);
-        }
-    })
     shell.on('message', function (message) {
         // received a message sent from the Python script (a simple "print" statement) 
         console.log(message);
