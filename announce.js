@@ -13,6 +13,7 @@ var speakOnce = function (text, chalk) {
     if (config.silent || lastText === text) {
         return;
     }
+    lastText = text;
     if(config.useFestival)
     {
         exec('echo "' + '" | festival --tts');
