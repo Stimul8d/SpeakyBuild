@@ -1,15 +1,16 @@
 #!/usr/bin/env python
-import start, stop, inprog, bad, good
+import init, start, stop, inprog, bad, good
 import time, threading
 import os
 
 buildFile = 'latestBuild.txt'
 lastBuild = 'nothing'
+init.go()
 
 while True:
     if os.path.isfile(buildFile):
         lastBuild = str(open(buildFile).read()).strip()
-        print len(lastBuild)
+
         if lastBuild == 'inprog':
             inprog.go()
         if lastBuild == 'good':
@@ -17,7 +18,6 @@ while True:
         if lastBuild == 'bad':
             bad.go()
         if lastBuild == 'nothing':
-            print('start')
             start.go()
             stop.go()
 

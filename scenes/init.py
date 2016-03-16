@@ -65,12 +65,11 @@ def plot_points():
         uh.set_pixel(point.x, point.y, point.colour[0], point.colour[1], point.colour[2])
     uh.show()
 
-
-while True:
-
-    if len(points) < 10 and randint(0, 5) > 1:
-        points.append(LightPoint())
-    plot_points()
-    update_positions()
-    time.sleep(0.03)
+def go():
+    while True:
+        if len(points) < 10 and randint(0, 5) > 1:
+            points.append(LightPoint())
+        plot_points()
+        update_positions()
+        time.sleep(0.03)
 

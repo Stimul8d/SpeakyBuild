@@ -29,16 +29,13 @@ module.exports = {
     inProgress: function (text) {
         speak(text, chalk.yellow);
         snapshots.writeResults('inprog');
-        unicorn.inProgress();
     },
     buildFailure: function (text) {
         speak(text, chalk.red);
         snapshots.writeResults('fail');
-        unicorn.error();
     },
     goodBuild: function (text) {
         speak(text, chalk.green);
         snapshots.writeResults('pass');
-        unicorn.pass();
     },
 }

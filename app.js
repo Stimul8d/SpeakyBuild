@@ -1,7 +1,4 @@
-var voice = require('say');
 var request = require('request');
-var async = require('async')
-var fs = require('fs');
 var config = require('./config');
 var unicorn = require('./unicorn');
 var chalk = require('chalk');
