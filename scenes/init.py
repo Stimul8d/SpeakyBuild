@@ -66,7 +66,8 @@ def plot_points():
     uh.show()
 
 def go():
-    while True:
+    t_end = time.time() + 10
+    while time.time() < t_end:
         if len(points) < 10 and randint(0, 5) > 1:
             points.append(LightPoint())
         plot_points()
