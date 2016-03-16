@@ -6,7 +6,7 @@ import os
 buildFile = 'latestBuild.txt'
 lastBuild = 'nothing'
 #start.go()
-stop.go()
+#stop.go()
 
 def loop():
     print('loop')
