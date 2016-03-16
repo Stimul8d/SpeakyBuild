@@ -3,7 +3,7 @@ import init, start, stop, inprog, bad, good
 import time, threading
 import os
 
-buildFile = 'latestBuild.txt'
+buildFile = './scenes/latestBuild.txt'
 lastBuild = 'nothing'
 
 def out(file):
