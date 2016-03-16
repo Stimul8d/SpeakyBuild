@@ -4,8 +4,6 @@ import unicornhat as unicorn
 import time, colorsys
 import numpy as np
 
-unicorn.brightness(1)
-
 def make_gaussian(fwhm):
 	x = np.arange(0, 8, 1, float)
 	y = x[:, np.newaxis]
@@ -15,6 +13,7 @@ def make_gaussian(fwhm):
 	return gauss
 
 def go():    
+    unicorn.brightness(1)
     t_end = time.time() + 10
     while time.time() < t_end:
         for z in list(range(1, 10)[::-1]) + list(range(1, 10)):

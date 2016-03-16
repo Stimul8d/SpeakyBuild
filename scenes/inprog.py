@@ -133,7 +133,7 @@ def tunnel(x, y, step):
 def go():
     effects = [tunnel, rainbow_search, checker, swirl]
 
-    unicorn.brightness(0.05)
+    unicorn.brightness(1)
 
     step = 0
     t_end = time.time() + 10
