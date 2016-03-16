@@ -5,10 +5,11 @@ import os
 
 buildFile = 'latestBuild.txt'
 lastBuild = 'nothing'
-start.go()
+#start.go()
 stop.go()
 
 def loop():
+    print('loop')
     if os.path.isfile(buildFile):
         lastBuild = str(open(buildFile).read()).strip()
 

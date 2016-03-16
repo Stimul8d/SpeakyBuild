@@ -15,6 +15,9 @@ var run = function (fileName, chalk) {
             console.log(err);
         }
     })
+    shell.stdout.on('data', function (data) {
+        console.log(data);
+    });
 }
 
 module.exports = {
