@@ -6,9 +6,11 @@ var snapshots = require('./buildSnapshots');
 
 require('shelljs/global');
 
-var speak = function (text, chalk) {
+var lastText = '';
+
+var speakOnce = function (text, chalk) {
     console.log(chalk(text));
-    if (config.silent) {
+    if (config.silent || lastText === text) {
         return;
     }
     if(config.useFestival)
@@ -20,22 +22,22 @@ var speak = function (text, chalk) {
 
 module.exports = {
     initialize: function(text){
-        speak(text, chalk.green);  
+        speakOnce(text, chalk.green);  
         unicorn.initialize();
     },
     nothing: function(){
         snapshots.writeResults('nothing');
     },
     inProgress: function (text) {
-        speak(text, chalk.yellow);
+        speakOnce(text, chalk.yellow);
         snapshots.writeResults('inprog');
     },
     buildFailure: function (text) {
-        speak(text, chalk.red);
+        speakOnce(text, chalk.red);
         snapshots.writeResults('bad');
     },
     goodBuild: function (text) {
-        speak(text, chalk.green);
+        speakOnce(text, chalk.green);
         snapshots.writeResults('good');
     },
 }
