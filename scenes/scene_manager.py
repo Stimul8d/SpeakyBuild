@@ -6,6 +6,9 @@ import os
 buildFile = './scenes/latestBuild.txt'
 lastBuild = 'nothing'
 
+start.go()
+stop.go()
+
 def out(file):
     print(file)
     f = open(file,'w')
