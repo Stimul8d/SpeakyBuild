@@ -6,11 +6,10 @@ import os
 buildFile = 'latestBuild.txt'
 lastBuild = 'nothing'
 
-def loop():
-    start.go()
+while True:
     if os.path.isfile(buildFile):
-        lastBuild = open(buildFile).read()
-        print lastBuild
+        lastBuild = str(open(buildFile).read())
+        print len(lastBuild)
         if lastBuild == 'inprog':
             inprog.go()
         if lastBuild == 'good':
@@ -18,9 +17,8 @@ def loop():
         if lastBuild == 'bad':
             bad.go()
         if lastBuild == 'nothing':
+            print('start')
             start.go()
             stop.go()
 
-    threading.Timer(1, loop).start()
-
-loop()
+    time.sleep(1)

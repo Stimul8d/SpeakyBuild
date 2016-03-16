@@ -5,11 +5,11 @@ import os
 buildFile = 'latestBuild.txt'
 lastBuild = 'nothing'
 
-def loop():
+while True:
     print('loop')
     if os.path.isfile(buildFile):
         lastBuild = str(open(buildFile).read())
-
+        print(len(lastBuild))
         if lastBuild == 'inprog':
             print('ip')
         if lastBuild == 'good':
@@ -18,7 +18,4 @@ def loop():
             print('b')
         if lastBuild == 'nothing':
             print('nothing')
-
-    threading.Timer(1, loop).start()
-
-loop()
+    time.sleep(1)
