@@ -5,7 +5,7 @@ import os
 
 buildFile = 'latestBuild.txt'
 lastBuild = 'nothing'
-init.go()
+start.go()
 stop.go()
 
 while True:
