@@ -5,7 +5,7 @@ import os
 buildFile = 'latestBuild.txt'
 lastBuild = 'nothing'
 
-while True:
+def loop():
     print('loop')
     if os.path.isfile(buildFile):
         lastBuild = str(open(buildFile).read())
@@ -18,4 +18,6 @@ while True:
             print('b')
         if lastBuild == 'nothing':
             print('nothing')
-    time.sleep(1)
+    threading.Timer(1, loop).start()
+    
+loop()
