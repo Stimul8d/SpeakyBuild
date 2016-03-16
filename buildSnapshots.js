@@ -19,7 +19,7 @@ module.exports = {
         
         //if there wasn't a snapshot read the newest one
         if (!snapshotExists) {
-            data = fs.readFileSync(config.latestBuildFile);;
+            data = fs.readFileSync(config.latestBuildSnapshot);
         }
         return JSON.parse(data);
     }
