@@ -1,7 +1,5 @@
 var fs = require('fs');
 var config = require('./config');
-var Chance = require('chance');
-var snapshot;
 
 module.exports = {
     writeResults: function(results){
