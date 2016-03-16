@@ -8,7 +8,7 @@ lastBuild = 'nothing'
 
 while True:
     if os.path.isfile(buildFile):
-        lastBuild = str(open(buildFile).read())
+        lastBuild = str(open(buildFile).read()).strip()
         print len(lastBuild)
         if lastBuild == 'inprog':
             inprog.go()
