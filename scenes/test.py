@@ -1,23 +1,28 @@
 #!/usr/bin/env python
+import init, start, stop, inprog, bad, good
 import time, threading
 import os
 
 buildFile = 'latestBuild.txt'
 lastBuild = 'nothing'
+#start.go()
+#stop.go()
 
 def loop():
     print('loop')
     if os.path.isfile(buildFile):
-        lastBuild = str(open(buildFile).read())
-        print(len(lastBuild))
+        lastBuild = str(open(buildFile).read()).strip()
+
         if lastBuild == 'inprog':
-            print('ip')
+            inprog.go()
         if lastBuild == 'good':
-            print('g')
+            good.go()
         if lastBuild == 'bad':
-            print('b')
+            bad.go()
         if lastBuild == 'nothing':
-            print('nothing')
+            start.go()
+            stop.go()
+            
     threading.Timer(1, loop).start()
-    
+
 loop()

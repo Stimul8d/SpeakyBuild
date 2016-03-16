@@ -20,7 +20,8 @@ var run = function (fileName, chalk) {
 
 module.exports = {
     initialize: function () {
-        run('./scenes/scene_manager.py');
+        run('./scenes/test.py');
+        //run('./scenes/scene_manager.py');
     },
 }
 
