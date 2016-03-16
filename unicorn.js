@@ -1,5 +1,5 @@
 var config = require('./config');
-var shell = require('python-shell');
+var PythonShell = require('python-shell');
 var chalk = require('chalk');
 
 require('shelljs/global');
@@ -10,13 +10,16 @@ var run = function (fileName, chalk) {
         return;
     }
 
+    var shell = new PythonShell(fileName)
+
     shell.run(fileName, function (err) {
         if (err) {
             console.log(err);
         }
     })
-    shell.stdout.on('data', function (data) {
-        console.log(data);
+    shell.on('message', function (message) {
+        // received a message sent from the Python script (a simple "print" statement) 
+        console.log(message);
     });
 }
 
