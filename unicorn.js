@@ -10,7 +10,7 @@ var run = function (fileName, chalk) {
         return;
     }
 
-    var shell = new PythonShell(fileName)
+    var shell = new PythonShell(fileName, { mode: 'text ' })
 
     shell.on('message', function (message) {
         // received a message sent from the Python script (a simple "print" statement) 
@@ -20,8 +20,7 @@ var run = function (fileName, chalk) {
 
 module.exports = {
     initialize: function () {
-        run('./scenes/test.py');
-        //run('./scenes/scene_manager.py');
+        run('./scenes/scene_manager.py');
     },
 }
 
