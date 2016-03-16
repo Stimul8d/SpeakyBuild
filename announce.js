@@ -32,10 +32,10 @@ module.exports = {
     },
     buildFailure: function (text) {
         speak(text, chalk.red);
-        snapshots.writeResults('good');
+        snapshots.writeResults('bad');
     },
     goodBuild: function (text) {
         speak(text, chalk.green);
-        snapshots.writeResults('bad');
+        snapshots.writeResults('good');
     },
 }
