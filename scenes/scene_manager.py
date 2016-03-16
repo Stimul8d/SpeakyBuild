@@ -6,6 +6,7 @@ import os
 buildFile = 'latestBuild.txt'
 lastBuild = 'nothing'
 init.go()
+stop.go()
 
 while True:
     if os.path.isfile(buildFile):
