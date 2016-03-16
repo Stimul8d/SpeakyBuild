@@ -7,6 +7,7 @@ buildFile = 'latestBuild.txt'
 lastBuild = 'nothing'
 
 def loop():
+    start.go()
     if os.path.isfile(buildFile):
         lastBuild = open(buildFile).read()
         print lastBuild

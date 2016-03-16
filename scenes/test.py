@@ -1,15 +1,24 @@
 #!/usr/bin/env python
+import time, threading
+import os
 
-import time
-from sys import argv
+buildFile = 'latestBuild.txt'
+lastBuild = 'nothing'
 
-script, filename = argv
-lastBuild = open(filename).read()
+def loop():
+    print('loop')
+    if os.path.isfile(buildFile):
+        lastBuild = str(open(buildFile).read())
 
-def NewBuild():
-    newBuild = open(filename).read()
-    return newBuild != lastBuild
-    
-while not(NewBuild() ) :
-    print('yep')   
-    time.sleep(1)
+        if lastBuild == 'inprog':
+            print('ip')
+        if lastBuild == 'good':
+            print('g')
+        if lastBuild == 'bad':
+            print('b')
+        if lastBuild == 'nothing':
+            print('nothing')
+
+    threading.Timer(1, loop).start()
+
+loop()
