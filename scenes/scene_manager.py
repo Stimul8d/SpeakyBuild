@@ -32,7 +32,7 @@ while True:
         if lastBuild == 'bad':
             out('lastBad.txt')
             bad.go()
-        if lastBuild == 'nothing'
+        if lastBuild == 'nothing':
             out('lastNoNewBuilds.txt')
         if lastBuild == 'error':
             out('lastError.txt');
