@@ -60,7 +60,7 @@ var sendRequest = function () {
             + thisResult.fullDisplayName + ' is '
             + (isGoodBuild ? '' : 'not ') + 'building';
 
-        if (thisResult.building) {
+        if (thisResult.isGoodBuild) {
             announce.goodBuild(text);
             return;
         }
