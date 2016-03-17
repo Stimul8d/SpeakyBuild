@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import init, start, stop, inprog, bad, good
+import init, start, stop, inprog, bad, good, error
 import time, threading
 import os
 
@@ -8,7 +8,7 @@ lastBuild = 'nothing'
 
 start.go()
 stop.go()
-previousLastBuild = ''
+
 def out(file):
     print(file)
     f = open(file,'w')
@@ -20,8 +20,7 @@ out('lastPyRun.txt')
 while True:
     if os.path.exists(buildFile):
         lastBuild = str(open(buildFile).read()).strip()
-        if lastBuild == previousLastBuild: continue
-        previousLastBuild = lastBuild
+        
         print('buildFile contents: ' + lastBuild)
         print(len(lastBuild))
         if lastBuild == 'inprog':
