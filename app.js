@@ -32,9 +32,9 @@ var sendRequest = function () {
         var lastResult = snapshots.getSnapshot(body);
         
         //if there is no new build info, get out
-        var noNewBuilds = thisResult.number <= lastResult.number;
-        var currentBuildStatusChanged = thisResult.result != lastResult;
-        var noNewBuildInfo = noNewBuilds || currentBuildStatusChanged;
+        var newBuilds = thisResult.number > lastResult.number;
+        var buildStatusChanged = thisResult.result != lastResult.result;
+        var noNewBuildInfo = !newBuilds && !buildStatusChanged;
         if (config.debug) { noNewBuildInfo = false; }
         if (noNewBuildInfo) {
             announce.nothing();
