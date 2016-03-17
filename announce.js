@@ -27,7 +27,7 @@ module.exports = {
         unicorn.initialize();
     },
     nothing: function(){
-        snapshots.writeResults('nothing');
+        console.log('no new builds');
     },
     inProgress: function (text) {
         speakOnce(text, chalk.yellow);

@@ -35,8 +35,4 @@ while True:
         if lastBuild == 'error':
             out('lastError.txt');
             error.go()
-        if lastBuild == 'nothing':
-            out('lastNoNewBuilds.txt')
-            start.go()
-            stop.go()
         time.sleep(1)
