@@ -21,7 +21,7 @@ var sendRequest = function () {
         
         //if there's an error, get out.
         if (error || res.statusCode != 200) {
-            announce.buildFailure('request error');
+            announce.requestError();
             return;
         }
         
