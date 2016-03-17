@@ -25,16 +25,20 @@ while True:
         print(len(lastBuild))
         if lastBuild == 'inprog':
             out('lastInProg.txt')
+            stop.go()
             inprog.go()
         if lastBuild == 'good':
             out('lastGood.txt')
+            stop.go()
             good.go()
         if lastBuild == 'bad':
             out('lastBad.txt')
+            stop.go()
             bad.go()
         if lastBuild == 'nothing':
             out('lastNoNewBuilds.txt')
         if lastBuild == 'error':
-            out('lastError.txt');
+            out('lastError.txt')
+            stop.go()
             error.go()
         time.sleep(1)
