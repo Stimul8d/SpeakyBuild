@@ -46,6 +46,7 @@ var sendRequest = function () {
                 + ' is in progress.');
             return;
         }   
+        
         var isGoodBuild = thisResult.reset === 'SUCCESS';
         var text = 'One shall stand. One shall Fall. ' 
             + thisResult.fullDisplayName + ' is '
