@@ -33,7 +33,10 @@ var sendRequest = function () {
         
         //if there is no new build info, get out
         var newBuilds = thisResult.number > lastResult.number;
-        var buildStatusChanged = thisResult.result != lastResult.result;
+        console.log('last build:' + lastResult.number +'.this build:' + thisResult.number);
+        var buildStatusChanged = !newBuilds 
+            && (thisResult.result != lastResult.result);
+        console.log('last build:' + lastResult.result +'.this build:' + thisResult.result);
         var noNewBuildInfo = !newBuilds && !buildStatusChanged;
         if (config.debug) { noNewBuildInfo = false; }
         if (noNewBuildInfo) {
