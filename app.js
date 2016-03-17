@@ -31,10 +31,12 @@ var sendRequest = function () {
         //and the last one
         var lastResult = snapshots.getSnapshot(body);
         
-        //if there are no new builds, get out
+        //if there is no new build info, get out
         var noNewBuilds = thisResult.number <= lastResult.number;
-        if (config.debug) { noNewBuilds = false; }
-        if (noNewBuilds) {
+        var currentBuildStatusChanged = !noNewBuilds && (thisResult.result != lastResult);
+        var noNewBuildInfo = noNewBuilds || currentBuildStatusChanged;
+        if (config.debug) { noNewBuildInfo = false; }
+        if (noNewBuildInfo) {
             announce.nothing();
             return;
         }
@@ -47,16 +49,16 @@ var sendRequest = function () {
             return;
         }   
         
-        var isGoodBuild = thisResult.reset === 'SUCCESS';
+        var isGoodBuild = thisResult.result === 'SUCCESS';
         var text = 'One shall stand. One shall Fall. ' 
             + thisResult.fullDisplayName + ' is '
             + (isGoodBuild ? '' : 'not ') + 'building';
-
+            
         if (thisResult.building) {
             announce.goodBuild(text);
             return;
         }
-       
+       else{}
         announce.buildFailure(text);
         
     })};
