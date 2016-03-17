@@ -41,4 +41,8 @@ module.exports = {
         speakOnce(text, chalk.green);
         snapshots.writeResults('good');
     },
+    requestError: function(){
+        speakOnce('request error', chalk.red);
+        snapshots.writeResults('error');
+    }
 }

@@ -33,6 +33,9 @@ while True:
         if lastBuild == 'bad':
             out('lastBad.txt')
             bad.go()
+        if lastBuild == 'error':
+            out('lastError.txt');
+            error.go()
         if lastBuild == 'nothing':
             out('lastNoNewBuilds.txt')
             start.go()
