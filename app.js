@@ -56,6 +56,7 @@ var sendRequest = function () {
             return;
         }
         var isGoodBuild = thisResult.result === 'SUCCESS';
+        console.log('Build Result is ' + thisResult.result);
         var text = 'One shall stand. One shall Fall. '
             + thisResult.fullDisplayName + ' is '
             + (isGoodBuild ? '' : 'not ') + 'building';
