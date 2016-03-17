@@ -9,6 +9,7 @@ require('shelljs/global');
 var lastText = '';
 
 var speakOnce = function (text, chalk) {
+    text = text.replace('#',' number ');
     console.log(chalk(text));
     if (config.silent || lastText === text) {
         return;
