@@ -10,11 +10,11 @@ require('shelljs/global');
 announce.initialize('I will accept this burden with all that I am!');
 
 var sendRequest = function () {
-    
-    var jenkins = config.debug 
-        ? config.debugPathToJenkins     
+
+    var jenkins = config.debug
+        ? config.debugPathToJenkins
         : config.pathToJenkins;
-    
+
     console.log(chalk.blue('requesting ' + jenkins));
 
     request(jenkins, function (error, res, body) {
@@ -33,10 +33,10 @@ var sendRequest = function () {
         
         //if there is no new build info, get out
         var newBuilds = thisResult.number > lastResult.number;
-        console.log('last build:' + lastResult.number +'.this build:' + thisResult.number);
-        var buildStatusChanged = !newBuilds 
+        console.log('last build:' + lastResult.number + '.this build:' + thisResult.number);
+        var buildStatusChanged = !newBuilds
             && (thisResult.result != lastResult.result);
-        console.log('last build:' + lastResult.result +'.this build:' + thisResult.result);
+        console.log('last build:' + lastResult.result + '.this build:' + thisResult.result);
         var noNewBuildInfo = !newBuilds && !buildStatusChanged;
         if (config.debug) { noNewBuildInfo = false; }
         if (noNewBuildInfo) {
@@ -47,27 +47,29 @@ var sendRequest = function () {
         //if theres a build in progress announce it and get out
         var buildInProgress = thisResult.duration == 0;
         if (buildInProgress) {
-            announce.inProgress(thisResult.fullDisplayName 
+            announce.inProgress(thisResult.fullDisplayName
                 + ' is in progress.');
             return;
-        }   
-        
-        if(thisResult.result === 'ABORTED'){
+        }
+
+        if (thisResult.result === 'ABORTED') {
             return;
         }
         var isGoodBuild = thisResult.result === 'SUCCESS';
-        var text = 'One shall stand. One shall Fall. ' 
+        var text = 'One shall stand. One shall Fall. '
             + thisResult.fullDisplayName + ' is '
             + (isGoodBuild ? '' : 'not ') + 'building';
-            
+
         if (thisResult.building) {
             announce.goodBuild(text);
             return;
         }
-       else{}
-        announce.buildFailure(text);
-        
-    })};
+        else {
+            announce.buildFailure(text);
+        }
+
+    })
+};
 
 
 setInterval(function () {
