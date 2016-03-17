@@ -52,6 +52,9 @@ var sendRequest = function () {
             return;
         }   
         
+        if(thisResult.result === 'ABORTED'){
+            return;
+        }
         var isGoodBuild = thisResult.result === 'SUCCESS';
         var text = 'One shall stand. One shall Fall. ' 
             + thisResult.fullDisplayName + ' is '
